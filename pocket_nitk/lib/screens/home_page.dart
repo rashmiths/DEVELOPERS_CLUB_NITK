@@ -362,7 +362,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      subHeading('Latest News', NewsListings(), context),
+                      subHeading('Latest News', NewsListings(
+                         newsList: newsList,
+                      ), context),
                       //LATEST NEWS LIST
                       Container(
                         height: 140,
