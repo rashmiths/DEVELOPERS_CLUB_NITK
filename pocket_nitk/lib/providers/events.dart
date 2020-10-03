@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:nitk_virtual_guide/providers/event.dart';
+import 'package:pocket_nitk/providers/event.dart';
 import 'package:http/http.dart' as http;
 
 class Events with ChangeNotifier {

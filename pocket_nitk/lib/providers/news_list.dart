@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:nitk_virtual_guide/providers/news.dart';
+import 'package:pocket_nitk/providers/news.dart';
 
 class NewsList with ChangeNotifier {
   List<News> _news = [];
