@@ -186,7 +186,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                 return BuildingItem(
                                     lectureHallList[index].title,
                                     lectureHallList[index].imgUrl,
-                                    LHCPage());
+                                    LHCPage(lhc: lectureHallList[index]));
                               },
                               itemCount: lectureHallList.length,
                             ),
