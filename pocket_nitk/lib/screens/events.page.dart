@@ -5,8 +5,7 @@ import 'package:pocket_nitk/screens/events_details_page.dart';
 class EventsPage extends StatefulWidget {
   final List<Event> events;
 
-  const EventsPage({Key key, 
-  @required this.events}) : super(key: key);
+  const EventsPage({Key key, @required this.events}) : super(key: key);
 
   @override
   _EventsPageState createState() => _EventsPageState();
@@ -111,7 +110,10 @@ class _EventsPageState extends State<EventsPage>
                         children: [
                           ListTile(
                             onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(builder: (ctx) => EventDetail()
+                              MaterialPageRoute(
+                                  builder: (ctx) => EventDetail(
+                                        event: widget.events[index],
+                                      )
                                   // EventsDetailPage(
                                   //     news: widget.events[index]),
                                   ),
@@ -226,7 +228,10 @@ Widget tabs(List<Event> events, String title) {
               children: [
                 ListTile(
                   onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => EventDetail()
+                    MaterialPageRoute(
+                        builder: (ctx) => EventDetail(
+                              event: events[index],
+                            )
                         // EventsDetailPage(
                         //     news: widget.events[index]),
                         ),

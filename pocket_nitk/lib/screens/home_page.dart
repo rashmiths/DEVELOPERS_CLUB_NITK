@@ -257,8 +257,10 @@ class _MyHomePageState extends State<MyHomePage> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(30.0),
           child: GestureDetector(
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => EventDetail())),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => EventDetail(
+                      event: latestEventsList[index],
+                    ))),
             child: Stack(
               children: [
                 Container(
