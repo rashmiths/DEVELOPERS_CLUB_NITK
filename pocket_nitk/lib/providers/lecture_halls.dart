@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:pocket_nitk/constants/endpoints.dart';
 import 'package:pocket_nitk/providers/lecture_hall.dart';
 
 class LectureHalls with ChangeNotifier {
@@ -17,7 +18,7 @@ class LectureHalls with ChangeNotifier {
   // }
 
   Future<void> fetchAndSetLectureHalls() async {
-    var url = 'https://pocketnitk.firebaseio.com/buildings/lecture%20halls.json';
+    var url = lectureHallsEndPoint;
     try {
       final response = await http.get(url);
 
@@ -30,8 +31,7 @@ class LectureHalls with ChangeNotifier {
       extractedData.forEach((prodId, prodData) {
         loadedProductTypes.add(LectureHall(
           title: prodData['title'] ?? 'Title Not Available',
-          imgUrl: prodData['imgUrl'] ??
-              'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+          imgUrl: prodData['imgUrl'] ?? blankImage,
         ));
       });
 

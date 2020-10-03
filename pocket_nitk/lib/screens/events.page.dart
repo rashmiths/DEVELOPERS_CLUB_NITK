@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/event.dart';
 import 'package:pocket_nitk/screens/events_details_page.dart';
 
@@ -86,10 +87,10 @@ class _EventsPageState extends State<EventsPage>
               child: SafeArea(
                 child: TabBar(
                   controller: _tabController,
-                  unselectedLabelColor: Colors.grey,
-                  labelColor: Colors.blue[800],
+                  unselectedLabelColor: kGrey,
+                  labelColor: kBlue800,
                   labelPadding: EdgeInsets.only(bottom: 4),
-                  indicatorColor: Colors.blue[800],
+                  indicatorColor: kBlue800,
                   indicatorPadding: EdgeInsets.symmetric(horizontal: 10),
                   tabs: [
                     Text('All'),
@@ -146,7 +147,7 @@ class _EventsPageState extends State<EventsPage>
                                 _completedEvents.contains(widget.events[index])
                                     ? Card(
                                         //elevation: 2,
-                                        color: Colors.green[50],
+                                        color: kGreen50,
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(30))),
@@ -155,7 +156,7 @@ class _EventsPageState extends State<EventsPage>
                                           child: Text(
                                             'COMPLETED',
                                             style: TextStyle(
-                                                color: Colors.green[700],
+                                                color: kGreen700,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ))
@@ -163,7 +164,7 @@ class _EventsPageState extends State<EventsPage>
                                             .contains(widget.events[index])
                                         ? Card(
                                             //elevation: 2,
-                                            color: Colors.amber[50],
+                                            color: kAmber50,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(30))),
@@ -173,14 +174,14 @@ class _EventsPageState extends State<EventsPage>
                                               child: Text(
                                                 'UPCOMING',
                                                 style: TextStyle(
-                                                    color: Colors.amber,
+                                                    color: kAmber700,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
                                             ))
                                         : Card(
                                             //elevation: 2,
-                                            color: Colors.blue[50],
+                                            color: kBlue50,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
                                                     Radius.circular(30))),
@@ -190,7 +191,7 @@ class _EventsPageState extends State<EventsPage>
                                               child: Text(
                                                 'ONGOING',
                                                 style: TextStyle(
-                                                    color: Colors.blue,
+                                                    color: kBlue700,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),

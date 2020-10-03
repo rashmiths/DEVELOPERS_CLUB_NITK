@@ -3,31 +3,32 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:pocket_nitk/constants/endpoints.dart';
 import 'package:pocket_nitk/providers/rank.dart';
 
-
-class Ranks with ChangeNotifier{
+class Ranks with ChangeNotifier {
   List<Rank> _ranks = [];
   Ranks(this._ranks);
 
- List<Rank> get ranks {
+  List<Rank> get ranks {
     // if (_showFavoritesOnly) {
     //   return _items.where((prodItem) => prodItem.isFavorite).toList();
     // }
     return [..._ranks];
   }
-   List<Rank> get latestRanks {
+
+  List<Rank> get latestRanks {
     // if (_showFavoritesOnly) {
     //   return _items.where((prodItem) => prodItem.isFavorite).toList();
     // }
     return _ranks.where((element) => element.isLatest).toList();
   }
+
   Future<void> fetchAndSetRanks() async {
-    var url = 'https://pocketnitk.firebaseio.com/rankings.json';
+    var url = rankEndPoint;
     try {
-      
-      final response = await http.get(url);      
-      
+      final response = await http.get(url);
+
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       if (extractedData == null) {
         return;
@@ -35,15 +36,13 @@ class Ranks with ChangeNotifier{
 
       final List<Rank> loadedRanks = [];
       extractedData.forEach((prodId, prodData) {
-       loadedRanks.add(Rank(
-          
-          board: prodData['board'] ?? 'board Not Available',
-          ranking: prodData['rank'],
-          isLatest:prodData['isLatest']??false ,
-          year:prodData['year']
-        ));
+        loadedRanks.add(Rank(
+            board: prodData['board'] ?? 'board Not Available',
+            ranking: prodData['rank'],
+            isLatest: prodData['isLatest'] ?? false,
+            year: prodData['year']));
       });
-      _ranks= loadedRanks;      
+      _ranks = loadedRanks;
       notifyListeners();
     } on SocketException {
       throw 'NO INTERNET';

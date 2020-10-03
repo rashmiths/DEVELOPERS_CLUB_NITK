@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/event.dart';
 
 class EventDetail extends StatelessWidget {
@@ -16,11 +17,11 @@ class EventDetail extends StatelessWidget {
       final DateTime dateTime=DateTime(year1,month1,day1);
       final String title=dateTime.isBefore(DateTime.now())?'COMPLETED':dateTime.isAfter(DateTime.now())?'UPCOMING':'ONGOING';   
       final colourLight = title == 'COMPLETED'
-          ? Colors.green[50]
-          : title == 'UPCOMING' ? Colors.amber[50] : Colors.blue[50];
+          ? kGreen50
+          : title == 'UPCOMING' ? kAmber50: kBlue50;
       final colourDark = title == 'COMPLETED'
-          ? Colors.green[700]
-          : title == 'UPCOMING' ? Colors.amber[700] : Colors.blue[700];
+          ? kGreen700
+          : title == 'UPCOMING' ? kAmber700 : kBlue700;
 
       return SafeArea(
         child: Scaffold(
@@ -50,7 +51,7 @@ class EventDetail extends StatelessWidget {
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     ),
-                    color: Colors.black26,
+                    color: kBlack26,
                   ),
                 ),
               ),
@@ -61,13 +62,13 @@ class EventDetail extends StatelessWidget {
                     IconButton(
                         icon: Icon(
                           Icons.arrow_back,
-                          color: Colors.white,
+                          color: kWhite,
                         ),
                         onPressed: () => Navigator.of(context).pop()),
                     Text(
                       'Event Details',
                       style: TextStyle(
-                          color: Colors.white,
+                          color: kWhite,
                           fontWeight: FontWeight.bold,
                           fontSize: 22),
                     ),
@@ -84,7 +85,7 @@ class EventDetail extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 15,
-                          color: Colors.white),
+                          color: kWhite),
                     ),
                     SizedBox(height: 10),
                     Text(
@@ -92,7 +93,7 @@ class EventDetail extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Colors.white),
+                          color: kWhite),
                     ),
                   ],
                 ),
@@ -103,7 +104,7 @@ class EventDetail extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
-                    color: Colors.white,
+                    color: kWhite,
                   ),
                   child: ListView(
                     // crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +143,7 @@ class EventDetail extends StatelessWidget {
                                             'Start Date',
                                             style: TextStyle(
                                               fontSize: 16,                                            
-                                              color: Colors.grey
+                                              color: kGrey
                                               
                                             ),
                                           ),
@@ -180,7 +181,7 @@ class EventDetail extends StatelessWidget {
                                             'End Date',
                                             style: TextStyle(
                                               fontSize: 16,                                            
-                                              color: Colors.grey
+                                              color: kGrey
                                               
                                             ),
                                           ),
@@ -204,7 +205,7 @@ class EventDetail extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           '     ${event.description}',
-                          style: TextStyle(color: Colors.grey, fontSize: 18),
+                          style: TextStyle(color: kGrey, fontSize: 18),
                         ),
                       )
                     ],

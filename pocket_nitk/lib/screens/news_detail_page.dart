@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/news.dart';
 
 class NewsDetailPage extends StatelessWidget {
@@ -35,7 +36,7 @@ class NewsDetailPage extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
-                  color: Colors.black26,
+                  color: kBlack26,
                 ),
               ),
             ),
@@ -46,13 +47,13 @@ class NewsDetailPage extends StatelessWidget {
                   IconButton(
                       icon: Icon(
                         Icons.arrow_back,
-                        color: Colors.white,
+                        color: kWhite,
                       ),
                       onPressed: () => Navigator.of(context).pop()),
                   Text(
                     'News Details',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: kWhite,
                         fontWeight: FontWeight.bold,
                         fontSize: 22),
                   ),
@@ -65,7 +66,7 @@ class NewsDetailPage extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Colors.white,
+                  color: kWhite,
                 ),
                 child: ListView(
                   // crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +75,7 @@ class NewsDetailPage extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
                         news.date,
-                        style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
+                        style: TextStyle(color: kGrey,fontWeight: FontWeight.bold),
                       ),
                     ),
                     Padding(
@@ -89,7 +90,7 @@ class NewsDetailPage extends StatelessWidget {
                       padding: const EdgeInsets.all(10.0),
                       child: Text(
                         '     ${news.description}',
-                        style: TextStyle(color: Colors.grey, fontSize: 18),
+                        style: TextStyle(color: kGrey, fontSize: 18),
                       ),
                     )
                   ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/rank.dart';
 
 class RankingsPage extends StatelessWidget {
@@ -64,7 +65,7 @@ class RankingsPage extends StatelessWidget {
                                       ? '#'
                                       : rankingsList[index].ranking.toString(),
                                   style: TextStyle(
-                                    color: Colors.green[400],
+                                    color: kGreen400,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 30,
                                   ),
@@ -73,7 +74,7 @@ class RankingsPage extends StatelessWidget {
                                   Text(
                                     'RANK',
                                     style: TextStyle(
-                                      color: Colors.indigo[900],
+                                      color: kIndigo900,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                     ),
@@ -91,7 +92,7 @@ class RankingsPage extends StatelessWidget {
                               Icon(
                                 Icons.access_time,
                                 size: 15,
-                                color: Colors.grey,
+                                color: kGrey,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),

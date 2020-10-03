@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/hostel.dart';
 import 'package:pocket_nitk/providers/hostels.dart';
 import 'package:pocket_nitk/providers/lecture_hall.dart';
@@ -104,8 +105,8 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                   begin: Alignment.topRight,
                                   end: Alignment.bottomLeft,
                                   colors: [
-                                    Colors.lightBlue[900],
-                                    Colors.lightBlue[300]
+                                    kLightBlue900,
+                                    kLightBlue300,
                                   ],
                                 ),
                               ),
@@ -118,7 +119,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                       alignment: Alignment.topCenter,
                                       child: Text("BUILDINGS",
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: kWhite,
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                     ),
@@ -198,7 +199,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                 ),
                 if (_error)
                   Container(
-                    color: Colors.black54,
+                    color: kBlack54,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -207,14 +208,14 @@ class _BuildingsPageState extends State<BuildingsPage> {
                             children: [
                               CircleAvatar(
                                 radius: 60,
-                                backgroundColor: Colors.white70,
+                                backgroundColor: kWhite70,
                               ),
                               Positioned(
                                 left: 20,
                                 top: 20,
                                 child: CircleAvatar(
                                   radius: 40,
-                                  backgroundColor: Colors.green[300],
+                                  backgroundColor: kGreen300,
                                 ),
                               ),
                               Positioned(
@@ -222,7 +223,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                 top: 52,
                                 child: CircleAvatar(
                                   radius: 8,
-                                  backgroundColor: Colors.white70,
+                                  backgroundColor: kWhite70,
                                 ),
                               ),
                             ],
@@ -233,7 +234,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                             child: Text(
                               'OOPS!',
                               style: TextStyle(
-                                  color: Colors.green[300],
+                                  color: kGreen300,
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -241,7 +242,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                           Text(
                             '\t\t\t\t\tSlow or no internet connection\nPlease check your internet connection',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 12,
                               //fontWeight: FontWeight.bold
                             ),
@@ -269,13 +270,13 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 8),
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.white),
+                                    border: Border.all(color: kWhite),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(15))),
                                 child: Text(
                                   'Retry',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: kWhite,
                                     fontSize: 16,
                                     //fontWeight: FontWeight.bold
                                   ),

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/widgets/info_dialog.dart';
 
 class MapSample extends StatefulWidget {
@@ -176,17 +177,17 @@ class MapSampleState extends State<MapSample> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: kWhite,
           title: Text(
             'MAAPS',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: kBlack, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           actions: [
             IconButton(
                 icon: Icon(
                   Icons.info,
-                  color: Colors.black,
+                  color: kBlack,
                   size: 30,
                 ),
                 onPressed: () {

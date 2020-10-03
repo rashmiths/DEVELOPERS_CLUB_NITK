@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/hostel.dart';
 
 class HostelPage extends StatefulWidget {
@@ -115,7 +116,7 @@ class _HostelPageState extends State<HostelPage>
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
-                  color: Colors.black26,
+                  color: kBlack26,
                 ),
               ),
             ),
@@ -126,13 +127,13 @@ class _HostelPageState extends State<HostelPage>
                   IconButton(
                       icon: Icon(
                         Icons.arrow_back,
-                        color: Colors.white,
+                        color: kWhite,
                       ),
                       onPressed: () => Navigator.of(context).pop()),
                   Text(
                     'Hostel Details',
                     style: TextStyle(
-                        color: Colors.white,
+                        color: kWhite,
                         fontWeight: FontWeight.bold,
                         fontSize: 22),
                   ),
@@ -151,7 +152,7 @@ class _HostelPageState extends State<HostelPage>
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 15,
-                          color: Colors.white),
+                          color: kWhite),
                     ),
                     SizedBox(height: 10),
                     Text(
@@ -159,7 +160,7 @@ class _HostelPageState extends State<HostelPage>
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Colors.white),
+                          color: kWhite),
                     ),
                   ],
                 ),
@@ -171,7 +172,7 @@ class _HostelPageState extends State<HostelPage>
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Colors.white,
+                  color: kWhite,
                 ),
                 child: ListView(
                   // crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,10 +248,10 @@ class _HostelPageState extends State<HostelPage>
                       child: SafeArea(
                         child: TabBar(
                           controller: _tabController,
-                          unselectedLabelColor: Colors.grey,
-                          labelColor: Colors.blue[800],
+                          unselectedLabelColor: kGrey,
+                          labelColor: kBlue800,
                           labelPadding: EdgeInsets.only(bottom: 4),
-                          indicatorColor: Colors.blue[800],
+                          indicatorColor: kBlue800,
                           indicatorPadding:
                               EdgeInsets.symmetric(horizontal: 10),
                           tabs: [
@@ -321,7 +322,7 @@ Widget weekList(List<String> image, List<String> title) {
                       children: [
                         Card(
                             //elevation: 2,
-                            color: Colors.green[50],
+                            color: kGreen50,
                             shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(30))),
@@ -330,7 +331,7 @@ Widget weekList(List<String> image, List<String> title) {
                               child: Text(
                                 'BREAKFAST',
                                 style: TextStyle(
-                                    color: Colors.green[700],
+                                    color: kGreen700,
                                     fontWeight: FontWeight.bold),
                               ),
                             )),
@@ -345,7 +346,7 @@ Widget weekList(List<String> image, List<String> title) {
                           children: [
                             Card(
                                 //elevation: 2,
-                                color: Colors.amber[50],
+                                color: kAmber50,
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(30))),
@@ -354,7 +355,7 @@ Widget weekList(List<String> image, List<String> title) {
                                   child: Text(
                                     'LUNCH',
                                     style: TextStyle(
-                                        color: Colors.amber,
+                                        color: kAmber700,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 )),
@@ -369,7 +370,7 @@ Widget weekList(List<String> image, List<String> title) {
                               children: [
                                 Card(
                                     //elevation: 2,
-                                    color: Colors.blue[50],
+                                    color: kBlue50,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(30))),
@@ -378,7 +379,7 @@ Widget weekList(List<String> image, List<String> title) {
                                       child: Text(
                                         'EVENING',
                                         style: TextStyle(
-                                            color: Colors.blue,
+                                            color: kBlue700,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     )),
@@ -392,7 +393,7 @@ Widget weekList(List<String> image, List<String> title) {
                               children: [
                                 Card(
                                   //elevation: 2,
-                                  color: Colors.red[50],
+                                  color: kRed50,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(30))),
@@ -401,7 +402,7 @@ Widget weekList(List<String> image, List<String> title) {
                                     child: Text(
                                       'DINNER',
                                       style: TextStyle(
-                                          color: Colors.red,
+                                          color: kRed700,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
@@ -462,14 +463,14 @@ Widget slidingCards(
                             borderRadius: BorderRadius.all(
                               Radius.circular(30),
                             ),
-                            color: Colors.black26),
+                            color: kBlack26),
                       ),
                       Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
                               padding: EdgeInsets.only(left: 5),
                               child: Card(
-                                color: Colors.lightBlue[800],
+                                color: kLightBlue700,
                                 elevation: 6,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
@@ -482,7 +483,7 @@ Widget slidingCards(
                                             ? 'Aftenoon'
                                             : index == 2 ? 'Evening' : 'Night',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: kWhite,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -496,7 +497,7 @@ Widget slidingCards(
                   child: Text(
                     todayMenutitles[index],
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold, color: kWhite),
                   ),
                 ),
               )
@@ -514,10 +515,10 @@ Widget rowIcon(String title, String subtitle, IconData icon) {
     children: [
       CircleAvatar(
         radius: 27,
-        backgroundColor: Colors.blue[100],
+        backgroundColor: kBlue50,
         child: Icon(
           icon,
-          color: Colors.blue[900],
+          color: kBlue800,
         ),
       ),
       Padding(
@@ -532,7 +533,7 @@ Widget rowIcon(String title, String subtitle, IconData icon) {
               padding: const EdgeInsets.only(top: 8.0),
               child: Text(
                 subtitle,
-                style: TextStyle(fontSize: 15, color: Colors.grey),
+                style: TextStyle(fontSize: 15, color: kGrey),
               ),
             ),
           ],

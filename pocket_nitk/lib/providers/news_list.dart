@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:pocket_nitk/constants/endpoints.dart';
 import 'package:pocket_nitk/providers/news.dart';
 
 class NewsList with ChangeNotifier {
@@ -24,7 +25,7 @@ class NewsList with ChangeNotifier {
   // }
 
   Future<void> fetchAndSetNews() async {
-    var url = 'https://pocketnitk.firebaseio.com/news.json';
+    var url = newsEndPoint;
     try {
       final response = await http.get(url);
 
@@ -37,8 +38,7 @@ class NewsList with ChangeNotifier {
       extractedData.forEach((prodId, prodData) {
         loadedProductTypes.add(News(
             title: prodData['title'] ?? 'Title Not Available',
-            imgUrl: prodData['imgUrl'] ??
-                'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+            imgUrl: prodData['imgUrl'] ?? blankImage,
             description: prodData['description'] ?? '',
             isLatest: prodData['isLatest'] ?? false,
             date: prodData['date'] ?? ''));
