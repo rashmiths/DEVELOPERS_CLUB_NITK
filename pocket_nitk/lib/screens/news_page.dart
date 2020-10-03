@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pocket_nitk/providers/news.dart';
 import 'package:pocket_nitk/screens/news_detail_page.dart';
 
-
 class NewsListings extends StatelessWidget {
   final List<News> newsList;
 
@@ -11,10 +10,9 @@ class NewsListings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
+      child: Scaffold(
         body: Column(
           children: [
-            
             Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -40,8 +38,8 @@ class NewsListings extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
                         'News',
-                        style:
-                            TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -60,8 +58,9 @@ class NewsListings extends StatelessWidget {
                         ListTile(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (ctx) =>
-                                  NewsDetailPage(),
+                              builder: (ctx) => NewsDetailPage(
+                                news: newsList[index],
+                              ),
                             ),
                           ),
                           leading: ClipRRect(

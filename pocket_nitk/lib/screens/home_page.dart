@@ -362,18 +362,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      subHeading('Latest News', NewsListings(
-                         newsList: newsList,
-                      ), context),
+                      subHeading(
+                          'Latest News',
+                          NewsListings(
+                            newsList: newsList,
+                          ),
+                          context),
                       //LATEST NEWS LIST
                       Container(
                         height: 140,
                         child: ListView.builder(
                           itemBuilder: (ctx, index) {
                             return ListTile(
-                              onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => NewsDetailPage())),
+                              onTap: () =>
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => NewsDetailPage(
+                                            news: latestNews[index],
+                                          ))),
                               leading: CircleAvatar(
                                   radius: 30,
                                   backgroundColor: Colors.white,
