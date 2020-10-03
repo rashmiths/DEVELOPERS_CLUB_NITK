@@ -75,7 +75,7 @@ navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
  <table>
   <tr>
     <td>HostelPage</td>
-     <td>HostelpAge(Mess)</td>
+     <td>HostelPage(Mess)</td>
      
   </tr>
   <tr>
