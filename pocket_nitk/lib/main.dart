@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pocket_nitk/providers/events.dart';
 import 'package:pocket_nitk/providers/home_photos.dart';
+import 'package:pocket_nitk/providers/hostels.dart';
+import 'package:pocket_nitk/providers/lecture_halls.dart';
 import 'package:pocket_nitk/providers/news_list.dart';
 import 'package:pocket_nitk/providers/ranks.dart';
 import 'package:pocket_nitk/screens/bottom_tabs.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => Events([])),
         ChangeNotifierProvider(create: (_) => Ranks([])),
         ChangeNotifierProvider(create: (_) => NewsList([])),
-        
+        ChangeNotifierProvider(create: (_) => Hostels([])),
+        ChangeNotifierProvider(create: (_) => LectureHalls([])),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
