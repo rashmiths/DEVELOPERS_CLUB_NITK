@@ -2,6 +2,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pocket_nitk/screens/buildings_page.dart';
 import 'package:pocket_nitk/screens/home_page.dart';
+import 'package:pocket_nitk/screens/map_page.dart';
+import 'package:pocket_nitk/screens/more_page.dart';
 
 class BottomTabs extends StatefulWidget {
   BottomTabs({Key key}) : super(key: key);
@@ -26,6 +28,8 @@ class _BottomTabsState extends State<BottomTabs> {
     List<Widget> _children = [
       MyHomePage(),
       BuildingsPage(),
+      MapSample(),
+      MorePage(),
     ];
     return SafeArea(
       child: Scaffold(
