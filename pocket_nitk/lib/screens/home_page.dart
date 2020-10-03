@@ -1,8 +1,9 @@
 import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
+import 'package:pocket_nitk/constants/endpoints.dart';
 import 'package:pocket_nitk/providers/event.dart';
 import 'package:pocket_nitk/providers/events.dart';
 import 'package:pocket_nitk/providers/home_photos.dart';
@@ -23,7 +24,7 @@ final seeAll = Padding(
     children: [
       Text(
         "See All",
-        style: TextStyle(fontSize: 16, color: Colors.grey),
+        style: TextStyle(fontSize: 16, color: kGrey),
       ),
       Icon(Icons.keyboard_arrow_right)
     ],
@@ -35,7 +36,7 @@ final upcome = Align(
     child: Padding(
         padding: EdgeInsets.only(left: 5),
         child: Card(
-          color: Colors.lightBlue[800],
+          color: kLightBlue700,
           elevation: 6,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -43,12 +44,11 @@ final upcome = Align(
             padding: EdgeInsets.all(8),
             child: Text(
               'Upcoming',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(color: kWhite, fontWeight: FontWeight.bold),
             ),
           ),
         )));
-
+//RANKING BULLETIN
 Widget rankingsRow(int rank1, String board1, int year1) {
   print(rank1);
   return Row(
@@ -59,7 +59,7 @@ Widget rankingsRow(int rank1, String board1, int year1) {
         child: Text(
           rank1.toString(),
           style: TextStyle(
-            color: Colors.green[400],
+            color: kGreen400,
             fontWeight: FontWeight.bold,
             fontSize: 36,
           ),
@@ -79,7 +79,7 @@ Widget rankingsRow(int rank1, String board1, int year1) {
           Text(
             year1.toString(),
             style: TextStyle(
-              color: Colors.green[400],
+              color: kGreen400,
               fontSize: 16,
             ),
           ),
@@ -197,21 +197,19 @@ class _MyHomePageState extends State<MyHomePage> {
     super.didChangeDependencies();
   }
 
+  //to make sure list is not empty
   final Event dummyEvent = Event(
       title: '',
-      imgUrl:
-          'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+      imgUrl: blankImage,
       isLatest: false,
       isUpcoming: false,
       date: '',
       description: '');
-  // final Rank dummyRank =
-  //     Rank(ranking: -1, board: '', isLatest: false, year: -1);
+
   final News dummyNews = News(
     title: '',
     date: '',
-    imgUrl:
-        'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+    imgUrl: blankImage,
     description: '',
     isLatest: false,
   );
@@ -242,11 +240,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final latestNews = news.latestnews.length == 0 || news.latestnews.isEmpty
         ? [dummyNews]
         : news.latestnews;
+    //CAROUSEL EFFECT FOR EVENTS
     final eventsCarousel = CarouselSlider.builder(
       itemCount: latestEventsList.length,
       options: CarouselOptions(
         height: 150,
-        // initialPage: (latestEventsList.length~/2),
         //enableInfiniteScroll: false,
         viewportFraction: 0.5,
         autoPlayInterval: Duration(seconds: 6),
@@ -280,12 +278,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30),
                               ),
-                              color: Colors.black26),
+                              color: kBlack26),
                         ),
                         // Align(
                         //   alignment: Alignment.topRight,
                         //   child: Text(latestEventsList[index].date,style: TextStyle(
-                        //     color:Colors.white
+                        //     color:kWhite
                         //   ),),
                         // )
                         if (latestEventsList[index].isUpcoming) upcome,
@@ -295,8 +293,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   alignment: Alignment.bottomCenter,
                   child: Text(
                     latestEventsList[index].title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, color: kWhite),
                   ),
                 )
               ],
@@ -305,8 +303,10 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
+    //REFRESH
     return RefreshIndicator(
       onRefresh: () async {
+        //LOADING DATA AGAIN
         try {
           await Provider.of<HomePhotos>(context, listen: false)
               .fetchAndSetHomePhotos();
@@ -382,7 +382,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ))),
                               leading: CircleAvatar(
                                   radius: 30,
-                                  backgroundColor: Colors.white,
+                                  backgroundColor: kWhite,
                                   backgroundImage:
                                       NetworkImage(latestNews[index].imgUrl)),
                               title: Text(latestNews[index].title),
@@ -423,16 +423,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
                                     child: rankingsRow(
                                       latestRanks[i].ranking,
                                       latestRanks[i].board,
                                       latestRanks[i].year,
                                     ),
                                   ),
+                                  //TO AVOID EMPTY RANK BULLETIN
                                   if (i + 1 < latestRanks.length)
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
                                       child: rankingsRow(
                                         latestRanks[i + 1].ranking,
                                         latestRanks[i + 1].board,
@@ -453,9 +456,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+          //WHEN ERROR
           if (_error)
             Container(
-              color: Colors.black54,
+              color: kBlack54,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -464,14 +468,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         CircleAvatar(
                           radius: 60,
-                          backgroundColor: Colors.white70,
+                          backgroundColor: kWhite70,
                         ),
                         Positioned(
                           left: 20,
                           top: 20,
                           child: CircleAvatar(
                             radius: 40,
-                            backgroundColor: Colors.green[300],
+                            backgroundColor: kGreen300,
                           ),
                         ),
                         Positioned(
@@ -479,7 +483,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           top: 52,
                           child: CircleAvatar(
                             radius: 8,
-                            backgroundColor: Colors.white70,
+                            backgroundColor: kWhite70,
                           ),
                         ),
                       ],
@@ -489,7 +493,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         'OOPS!',
                         style: TextStyle(
-                            color: Colors.green[300],
+                            color: kGreen300,
                             fontSize: 30,
                             fontWeight: FontWeight.bold),
                       ),
@@ -497,7 +501,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text(
                       '\t\t\t\t\tSlow or no internet connection\nPlease check your internet connection',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: kWhite,
                         fontSize: 12,
                         //fontWeight: FontWeight.bold
                       ),
@@ -525,13 +529,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding:
                               EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.white),
+                              border: Border.all(color: kWhite),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           child: Text(
                             'Retry',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 16,
                               //fontWeight: FontWeight.bold
                             ),
@@ -548,17 +552,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-// Widget homePage(
-//     List<String> imgList,
-//     List<Event> eventsList,
-//     List<Event> latestEventsList,
-//     List<Rank> ranksList,
-//     List<Rank> latestRanks,
-//     List<News> newsList,
-//     List<News> latestNews,
-//     BuildContext context) {
-//   //CAROUSEL EFFECT OF LATESTEVENTS
-
-//   return ;
-// }

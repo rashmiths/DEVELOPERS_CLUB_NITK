@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/screens/buildings_page.dart';
 import 'package:pocket_nitk/screens/home_page.dart';
 import 'package:pocket_nitk/screens/map_page.dart';
@@ -34,8 +35,8 @@ class _BottomTabsState extends State<BottomTabs> {
     return SafeArea(
       child: Scaffold(
           bottomNavigationBar: CurvedNavigationBar(
-            color: Colors.white,
-            backgroundColor: Colors.lightBlue[700],
+            color: kWhite,
+            backgroundColor: kLightBlue700,
             key: _bottomNavigationKey,
             items: <Widget>[
               Icon(Icons.home),

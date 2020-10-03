@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:pocket_nitk/constants/endpoints.dart';
 import 'package:pocket_nitk/providers/event.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,7 +27,7 @@ class Events with ChangeNotifier {
   // }
 
   Future<void> fetchAndSetEvents() async {
-    var url = 'https://pocketnitk.firebaseio.com/events.json';
+    var url = eventEndPoint;
     try {
        
       final response = await http.get(url);
@@ -42,11 +43,10 @@ class Events with ChangeNotifier {
         loadedProductTypes.add(Event(
           
           title: prodData['title'] ?? 'Title Not Available',
-          imgUrl: prodData['imgUrl'] ??
-              'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+          imgUrl: prodData['imgUrl'] ??blankImage,              
           isUpcoming: prodData['isUpcoming']??false,
           isLatest:prodData['isLatest']??false ,
-          description: prodData['description']??' The massive technology conference Techweek references past attendees and sponsors to illustrate how popular and illustrious the event is',
+          description: prodData['description']??'',
           date:prodData['date']??''
         ));
       });

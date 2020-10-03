@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/screens/bottom_tabs.dart';
 
 Widget carouselWithBlue(List<String> imgList){
@@ -19,7 +20,7 @@ Widget carouselWithBlue(List<String> imgList){
                         gradient: LinearGradient(
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
-                          colors: [Colors.lightBlue[900], Colors.lightBlue[300]],
+                          colors: [kLightBlue900, kLightBlue300],
                         ),
                       ),
                       child: Padding(
@@ -31,7 +32,7 @@ Widget carouselWithBlue(List<String> imgList){
                               alignment: Alignment.topCenter,
                               child: Text("Pocket N I T K",
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: kWhite,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
                             ),
@@ -83,12 +84,12 @@ Widget carouselWithBlue(List<String> imgList){
                                             ? Icon(
                                                 Icons.radio_button_checked,
                                                 size: 8,
-                                                color: Colors.white,
+                                                color: kWhite,
                                               )
                                             : Icon(
                                                 Icons.radio_button_unchecked,
                                                 size: 8,
-                                                color: Colors.white,
+                                                color: kWhite,
                                               ),
                                     ],
                                   ),

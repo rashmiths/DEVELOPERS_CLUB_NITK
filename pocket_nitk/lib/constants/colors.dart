@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+Color kBlue800=Colors.blue[800];
+Color kBlue700=Colors.blue[700];
+Color kBlue200=Colors.blue[200];
+Color kBlue50=Colors.blue[50];
+const Color kWhite=Colors.white;
+const Color kWhite70=Colors.white70;
+Color kLightBlue700=Colors.lightBlue[700];
+Color kLightBlue900=Colors.lightBlue[900];
+Color kLightBlue300=Colors.lightBlue[300];
+const Color kBlack54=Colors.black54;
+const Color kBlack26=Colors.black26;
+const Color kBlack=Colors.black;
+Color kGreen300=Colors.green[300];
+Color kGreen400=Colors.green[400];
+Color kGreen50=Colors.green[50];
+Color kGreen700=Colors.green[700];
+Color kAmber50= Colors.amber[50];
+Color kAmber700= Colors.amber[700];
+Color kRed50=Colors.red[50];
+Color kRed700=Colors.red[700];
+Color kRed=Colors.red;
+Color kGrey=Colors.grey;
+Color kIndigo900=Colors.indigo[900];
+

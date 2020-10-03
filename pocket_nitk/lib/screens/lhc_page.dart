@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/lecture_hall.dart';
 
 
@@ -15,7 +16,7 @@ class LHCPage extends StatelessWidget {
       ),
       body: SafeArea(child: Center(
         child: Text('Under Construction',style: TextStyle(
-            color: Colors.red,
+            color: kRed,
             fontWeight: FontWeight.bold,
             fontSize: 25
 

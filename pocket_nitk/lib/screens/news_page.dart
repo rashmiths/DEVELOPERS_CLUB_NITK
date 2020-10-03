@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/news.dart';
 import 'package:pocket_nitk/screens/news_detail_page.dart';
 
@@ -9,6 +10,8 @@ class NewsListings extends StatelessWidget {
   const NewsListings({Key key, @required this.newsList}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
+    //LIST OF NEWS
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -84,7 +87,7 @@ class NewsListings extends StatelessWidget {
                               Icon(
                                 Icons.access_time,
                                 size: 15,
-                                color: Colors.grey,
+                                color: kGrey,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),

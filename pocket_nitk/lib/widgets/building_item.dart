@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 
 class BuildingItem extends StatelessWidget {
   final String title, imgUrl;
@@ -20,6 +21,7 @@ class BuildingItem extends StatelessWidget {
         padding: EdgeInsets.all(15.0),
         child: Stack(
           children: [
+            //FOR THE CURVED BLUE BACKGROUND
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.network(
@@ -32,7 +34,7 @@ class BuildingItem extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Colors.black26,
+                color: kBlack26,
               ),
             ),
             Align(
@@ -42,7 +44,7 @@ class BuildingItem extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                      color: Colors.white,
+                      color: kWhite,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),

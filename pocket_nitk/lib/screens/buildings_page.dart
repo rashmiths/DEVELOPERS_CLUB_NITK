@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/providers/hostel.dart';
 import 'package:pocket_nitk/providers/hostels.dart';
 import 'package:pocket_nitk/providers/lecture_hall.dart';
@@ -63,13 +64,14 @@ class _BuildingsPageState extends State<BuildingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
+    
     final hostel = Provider.of<Hostels>(context, listen: false);
     final hostelList = hostel.hostels;
     final lectureHall = Provider.of<LectureHalls>(context, listen: false);
     final lectureHallList = lectureHall.lectureHalls;
     return RefreshIndicator(
         onRefresh: () async {
+          //LOADING AGAIN ON REFRESH
           try {
             await Provider.of<Hostels>(context, listen: false)
                 .fetchAndSetHostels();
@@ -83,6 +85,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
           body: SafeArea(
             child: Stack(
               children: [
+                //THE WHOLE PAGE IS SCROLLABLE
                 SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,8 +107,8 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                   begin: Alignment.topRight,
                                   end: Alignment.bottomLeft,
                                   colors: [
-                                    Colors.lightBlue[900],
-                                    Colors.lightBlue[300]
+                                    kLightBlue900,
+                                    kLightBlue300,
                                   ],
                                 ),
                               ),
@@ -118,7 +121,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                       alignment: Alignment.topCenter,
                                       child: Text("BUILDINGS",
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: kWhite,
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
                                     ),
@@ -141,6 +144,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
+                          //HOSTEL SECTION IS MADE SCROLLABLE
                           Container(
                             height: MediaQuery.of(context).size.height * 0.45,
                             child: GridView.builder(
@@ -170,6 +174,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
+                          //EVEN LHC SECTION
                           Container(
                             height: 250,
                             child: GridView.builder(
@@ -196,9 +201,10 @@ class _BuildingsPageState extends State<BuildingsPage> {
                     ],
                   ),
                 ),
+                //WHEN ERROR
                 if (_error)
                   Container(
-                    color: Colors.black54,
+                    color: kBlack54,
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -207,14 +213,14 @@ class _BuildingsPageState extends State<BuildingsPage> {
                             children: [
                               CircleAvatar(
                                 radius: 60,
-                                backgroundColor: Colors.white70,
+                                backgroundColor: kWhite70,
                               ),
                               Positioned(
                                 left: 20,
                                 top: 20,
                                 child: CircleAvatar(
                                   radius: 40,
-                                  backgroundColor: Colors.green[300],
+                                  backgroundColor: kGreen300,
                                 ),
                               ),
                               Positioned(
@@ -222,7 +228,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                 top: 52,
                                 child: CircleAvatar(
                                   radius: 8,
-                                  backgroundColor: Colors.white70,
+                                  backgroundColor: kWhite70,
                                 ),
                               ),
                             ],
@@ -233,7 +239,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                             child: Text(
                               'OOPS!',
                               style: TextStyle(
-                                  color: Colors.green[300],
+                                  color: kGreen300,
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -241,7 +247,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                           Text(
                             '\t\t\t\t\tSlow or no internet connection\nPlease check your internet connection',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: kWhite,
                               fontSize: 12,
                               //fontWeight: FontWeight.bold
                             ),
@@ -269,13 +275,13 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 8),
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.white),
+                                    border: Border.all(color: kWhite),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(15))),
                                 child: Text(
                                   'Retry',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: kWhite,
                                     fontSize: 16,
                                     //fontWeight: FontWeight.bold
                                   ),

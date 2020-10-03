@@ -3,23 +3,23 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:pocket_nitk/constants/endpoints.dart';
 
-
-class HomePhotos with ChangeNotifier{
+class HomePhotos with ChangeNotifier {
   List<String> _homephotos = [];
   HomePhotos(this._homephotos);
 
- List<String> get homephotos {
+  List<String> get homephotos {
     // if (_showFavoritesOnly) {
     //   return _items.where((prodItem) => prodItem.isFavorite).toList();
     // }
     return [..._homephotos];
   }
+
   Future<void> fetchAndSetHomePhotos() async {
-    var url = 'https://pocketnitk.firebaseio.com/homephotos.json';
+    var url = homePhotosEndPoint;
     try {
-      
-      final response = await http.get(url);      
+      final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       if (extractedData == null) {
         return;
@@ -28,12 +28,10 @@ class HomePhotos with ChangeNotifier{
       final List<String> loadedHomePhotos = [];
       extractedData.forEach((photId, photData) {
         loadedHomePhotos.add(
-          
-       photData??
-              'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+          photData ?? blankImage,
         );
       });
-      _homephotos = loadedHomePhotos;      
+      _homephotos = loadedHomePhotos;
       print(_homephotos);
       notifyListeners();
     } on SocketException {

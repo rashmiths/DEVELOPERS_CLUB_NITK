@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/widgets/info_dialog.dart';
 
 class MapSample extends StatefulWidget {
@@ -21,6 +22,7 @@ class MapSampleState extends State<MapSample> {
     ),
     zoom: 16,
   );
+  //MARKING ALL THE IMP LOCATION IN NITK
   @override
   void initState() {
     allMarkers.add(Marker(
@@ -167,6 +169,7 @@ class MapSampleState extends State<MapSample> {
     super.initState();
   }
 
+//DELEBIRATELY PUTTING BOUNDS TO RESTRICT TO SHOW ONLY NITK PREMISES
   LatLngBounds bounds = LatLngBounds(
     southwest: LatLng(13.004748, 74.791336),
     northeast: LatLng(13.01603, 74.801060),
@@ -176,17 +179,17 @@ class MapSampleState extends State<MapSample> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: kWhite,
           title: Text(
-            'MAAPS',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            'MAPS',
+            style: TextStyle(color: kBlack, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           actions: [
             IconButton(
                 icon: Icon(
                   Icons.info,
-                  color: Colors.black,
+                  color: kBlack,
                   size: 30,
                 ),
                 onPressed: () {
@@ -220,6 +223,7 @@ class MapSampleState extends State<MapSample> {
           },
           myLocationEnabled: true,
         ),
+        //SATELLITE MAP
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: Container(
           width: 80,
@@ -235,12 +239,7 @@ class MapSampleState extends State<MapSample> {
             ),
           ),
         ),
-       
       ),
     );
   }
-
-  
-
-  
 }
