@@ -157,7 +157,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                 return BuildingItem(
                                     hostelList[index].title,
                                     hostelList[index].imgUrl,
-                                    HostelPage());
+                                    HostelPage(hostel: hostelList[index]));
                               },
                               itemCount: hostelList.length,
                             ),
