@@ -10,6 +10,8 @@ class NewsListings extends StatelessWidget {
   const NewsListings({Key key, @required this.newsList}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
+    //LIST OF NEWS
     return SafeArea(
       child: Scaffold(
         body: Column(

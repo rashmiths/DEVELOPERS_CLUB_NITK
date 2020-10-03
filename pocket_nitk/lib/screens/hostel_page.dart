@@ -166,6 +166,7 @@ class _HostelPageState extends State<HostelPage>
                 ),
               ),
             ),
+            //ICONS WITH DESCRIPTION
             Padding(
               padding: EdgeInsets.only(top:  MediaQuery.of(context).size.height *0.27, left: 10, right: 10),
               child: Container(
@@ -213,6 +214,7 @@ class _HostelPageState extends State<HostelPage>
                             ),
                           ],
                         )),
+                    //MESS DETAILS
                     Align(
                       alignment: Alignment.center,
                       child: Padding(
@@ -234,6 +236,7 @@ class _HostelPageState extends State<HostelPage>
                             fontWeight: FontWeight.normal, fontSize: 23),
                       ),
                     ),
+                    //THE CAROUSEL OF CARDS
                     slidingCards(todayMenuImages, todayMenutitles),
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0,left: 15),
@@ -243,6 +246,7 @@ class _HostelPageState extends State<HostelPage>
                             fontWeight: FontWeight.normal, fontSize: 23),
                       ),
                     ),
+                    //TABBAR VIEW TO SHOWCASE WEEKS TIMETABLE
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       child: SafeArea(
@@ -425,6 +429,7 @@ Widget slidingCards(
     itemCount: todayMenuImages.length,
     options: CarouselOptions(
       height: 150,
+      //TO SHOW RESPECTIVE FOOD CARD AT RESPECTIVE TIME
       initialPage: DateTime.now().hour < 9
           ? 0
           : DateTime.now().hour < 14 ? 1 : DateTime.now().hour < 19 ? 2 : 3,
@@ -465,6 +470,7 @@ Widget slidingCards(
                             ),
                             color: kBlack26),
                       ),
+                      //THE BADGE MORNING,AFT,EVE OR NIGHT
                       Align(
                           alignment: Alignment.topLeft,
                           child: Padding(

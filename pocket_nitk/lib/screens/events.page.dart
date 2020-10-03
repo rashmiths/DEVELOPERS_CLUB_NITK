@@ -41,19 +41,26 @@ class _EventsPageState extends State<EventsPage>
       List<DateTime> dates = dateGenerate(element);
       return dates[1].isBefore(DateTime.now());
     }).toList();
+
+
     final List<Event> _upcomingEvents = widget.events.where((element) {
       List<DateTime> dates = dateGenerate(element);
       return dates[0].isAfter(DateTime.now());
     }).toList();
+
+
     final List<Event> _ongoingEvents = widget.events.where((element) {
       List<DateTime> dates = dateGenerate(element);
       return dates[0].isBefore(DateTime.now()) &&
           dates[1].isAfter(DateTime.now());
     }).toList();
+
+
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
+            //TITLE OF THE PAGE
             Card(
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -105,6 +112,7 @@ class _EventsPageState extends State<EventsPage>
               child: TabBarView(
                 controller: _tabController,
                 children: [
+                  //THE ALL TAB
                   ListView.builder(
                     itemBuilder: (context, index) {
                       return Column(
@@ -205,6 +213,7 @@ class _EventsPageState extends State<EventsPage>
                     },
                     itemCount: widget.events.length,
                   ),
+                  //REGULAR TABS
                   tabs(_ongoingEvents, 'Ongoing'),
                   tabs(_upcomingEvents, 'Upcoming'),
                   tabs(_completedEvents, 'Completed'),

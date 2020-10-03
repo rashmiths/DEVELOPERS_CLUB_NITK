@@ -21,6 +21,7 @@ class BuildingItem extends StatelessWidget {
         padding: EdgeInsets.all(15.0),
         child: Stack(
           children: [
+            //FOR THE CURVED BLUE BACKGROUND
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Image.network(

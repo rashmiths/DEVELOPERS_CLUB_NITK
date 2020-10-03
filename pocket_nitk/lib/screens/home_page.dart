@@ -1,9 +1,9 @@
 import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pocket_nitk/constants/colors.dart';
+import 'package:pocket_nitk/constants/endpoints.dart';
 import 'package:pocket_nitk/providers/event.dart';
 import 'package:pocket_nitk/providers/events.dart';
 import 'package:pocket_nitk/providers/home_photos.dart';
@@ -44,12 +44,11 @@ final upcome = Align(
             padding: EdgeInsets.all(8),
             child: Text(
               'Upcoming',
-              style:
-                  TextStyle(color: kWhite, fontWeight: FontWeight.bold),
+              style: TextStyle(color: kWhite, fontWeight: FontWeight.bold),
             ),
           ),
         )));
-
+//RANKING BULLETIN
 Widget rankingsRow(int rank1, String board1, int year1) {
   print(rank1);
   return Row(
@@ -80,7 +79,7 @@ Widget rankingsRow(int rank1, String board1, int year1) {
           Text(
             year1.toString(),
             style: TextStyle(
-              color:kGreen400,
+              color: kGreen400,
               fontSize: 16,
             ),
           ),
@@ -198,21 +197,19 @@ class _MyHomePageState extends State<MyHomePage> {
     super.didChangeDependencies();
   }
 
+  //to make sure list is not empty
   final Event dummyEvent = Event(
       title: '',
-      imgUrl:
-          'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+      imgUrl: blankImage,
       isLatest: false,
       isUpcoming: false,
       date: '',
       description: '');
-  // final Rank dummyRank =
-  //     Rank(ranking: -1, board: '', isLatest: false, year: -1);
+
   final News dummyNews = News(
     title: '',
     date: '',
-    imgUrl:
-        'https://www.capwholesalers.com/shop/images/p.68628.1-thumbs-up.png',
+    imgUrl: blankImage,
     description: '',
     isLatest: false,
   );
@@ -243,11 +240,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final latestNews = news.latestnews.length == 0 || news.latestnews.isEmpty
         ? [dummyNews]
         : news.latestnews;
+    //CAROUSEL EFFECT FOR EVENTS
     final eventsCarousel = CarouselSlider.builder(
       itemCount: latestEventsList.length,
       options: CarouselOptions(
         height: 150,
-        // initialPage: (latestEventsList.length~/2),
         //enableInfiniteScroll: false,
         viewportFraction: 0.5,
         autoPlayInterval: Duration(seconds: 6),
@@ -296,8 +293,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   alignment: Alignment.bottomCenter,
                   child: Text(
                     latestEventsList[index].title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: kWhite),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, color: kWhite),
                   ),
                 )
               ],
@@ -306,8 +303,10 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
+    //REFRESH
     return RefreshIndicator(
       onRefresh: () async {
+        //LOADING DATA AGAIN
         try {
           await Provider.of<HomePhotos>(context, listen: false)
               .fetchAndSetHomePhotos();
@@ -424,16 +423,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
                                     child: rankingsRow(
                                       latestRanks[i].ranking,
                                       latestRanks[i].board,
                                       latestRanks[i].year,
                                     ),
                                   ),
+                                  //TO AVOID EMPTY RANK BULLETIN
                                   if (i + 1 < latestRanks.length)
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8.0),
                                       child: rankingsRow(
                                         latestRanks[i + 1].ranking,
                                         latestRanks[i + 1].board,
@@ -454,6 +456,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+          //WHEN ERROR
           if (_error)
             Container(
               color: kBlack54,
@@ -549,5 +552,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-

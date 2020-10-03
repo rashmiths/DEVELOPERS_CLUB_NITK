@@ -9,11 +9,11 @@ class EventDetail extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
      
-      
+      //GENERATING THE DATE 
       int day1 = int.parse(event.date.substring(0, 2));      
       int month1 = int.parse(event.date.substring(3, 5));     
       int  year1 = int.parse(event.date.substring(6, 10));
-        
+        //TO ASSIGN THE BADGE i.e COMPLETED,UPCOMING,ONGOING
       final DateTime dateTime=DateTime(year1,month1,day1);
       final String title=dateTime.isBefore(DateTime.now())?'COMPLETED':dateTime.isAfter(DateTime.now())?'UPCOMING':'ONGOING';   
       final colourLight = title == 'COMPLETED'
@@ -27,6 +27,7 @@ class EventDetail extends StatelessWidget {
         child: Scaffold(
           body: Stack(
             children: [
+              //TITLE OF THE PAGE
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
@@ -153,6 +154,7 @@ class EventDetail extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              //ICON WITH DESCRIPTION
                               Wrap(
                                 //crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

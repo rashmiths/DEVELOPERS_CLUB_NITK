@@ -64,13 +64,14 @@ class _BuildingsPageState extends State<BuildingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
+    
     final hostel = Provider.of<Hostels>(context, listen: false);
     final hostelList = hostel.hostels;
     final lectureHall = Provider.of<LectureHalls>(context, listen: false);
     final lectureHallList = lectureHall.lectureHalls;
     return RefreshIndicator(
         onRefresh: () async {
+          //LOADING AGAIN ON REFRESH
           try {
             await Provider.of<Hostels>(context, listen: false)
                 .fetchAndSetHostels();
@@ -84,6 +85,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
           body: SafeArea(
             child: Stack(
               children: [
+                //THE WHOLE PAGE IS SCROLLABLE
                 SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,6 +144,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
+                          //HOSTEL SECTION IS MADE SCROLLABLE
                           Container(
                             height: MediaQuery.of(context).size.height * 0.45,
                             child: GridView.builder(
@@ -171,6 +174,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ),
+                          //EVEN LHC SECTION
                           Container(
                             height: 250,
                             child: GridView.builder(
@@ -197,6 +201,7 @@ class _BuildingsPageState extends State<BuildingsPage> {
                     ],
                   ),
                 ),
+                //WHEN ERROR
                 if (_error)
                   Container(
                     color: kBlack54,

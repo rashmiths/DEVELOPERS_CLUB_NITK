@@ -8,6 +8,8 @@ class RankingsPage extends StatelessWidget {
   const RankingsPage({Key key, @required this.rankingsList}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
+    //LIST OF RANKS
     return SafeArea(
       child: Scaffold(
         body: Column(

@@ -22,6 +22,7 @@ class MapSampleState extends State<MapSample> {
     ),
     zoom: 16,
   );
+  //MARKING ALL THE IMP LOCATION IN NITK
   @override
   void initState() {
     allMarkers.add(Marker(
@@ -168,6 +169,7 @@ class MapSampleState extends State<MapSample> {
     super.initState();
   }
 
+//DELEBIRATELY PUTTING BOUNDS TO RESTRICT TO SHOW ONLY NITK PREMISES
   LatLngBounds bounds = LatLngBounds(
     southwest: LatLng(13.004748, 74.791336),
     northeast: LatLng(13.01603, 74.801060),
@@ -179,7 +181,7 @@ class MapSampleState extends State<MapSample> {
         appBar: AppBar(
           backgroundColor: kWhite,
           title: Text(
-            'MAAPS',
+            'MAPS',
             style: TextStyle(color: kBlack, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
@@ -221,6 +223,7 @@ class MapSampleState extends State<MapSample> {
           },
           myLocationEnabled: true,
         ),
+        //SATELLITE MAP
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: Container(
           width: 80,
@@ -236,12 +239,7 @@ class MapSampleState extends State<MapSample> {
             ),
           ),
         ),
-       
       ),
     );
   }
-
-  
-
-  
 }
