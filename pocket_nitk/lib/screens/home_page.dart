@@ -400,7 +400,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      subHeading('Rankings', RankingsPage(), context),
+                      subHeading(
+                          'Rankings',
+                          RankingsPage(
+                            rankingsList: ranksList,
+                          ),
+                          context),
                       SizedBox(
                         height: 20,
                       ),
