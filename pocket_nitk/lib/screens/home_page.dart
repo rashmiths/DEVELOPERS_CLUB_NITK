@@ -52,6 +52,7 @@ final upcome = Align(
 Widget rankingsRow(int rank1, String board1, int year1) {
   print(rank1);
   return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Padding(
         padding: const EdgeInsets.only(right: 8.0),
@@ -418,19 +419,25 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Row(
                                 //alignment: WrapAlignment.spaceBetween,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceBetween,
 
                                 children: [
-                                  rankingsRow(
-                                    latestRanks[i].ranking,
-                                    latestRanks[i].board,
-                                    latestRanks[i].year,
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                    child: rankingsRow(
+                                      latestRanks[i].ranking,
+                                      latestRanks[i].board,
+                                      latestRanks[i].year,
+                                    ),
                                   ),
                                   if (i + 1 < latestRanks.length)
-                                    rankingsRow(
-                                      latestRanks[i + 1].ranking,
-                                      latestRanks[i + 1].board,
-                                      latestRanks[i + 1].year,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                      child: rankingsRow(
+                                        latestRanks[i + 1].ranking,
+                                        latestRanks[i + 1].board,
+                                        latestRanks[i + 1].year,
+                                      ),
                                     ),
                                 ],
                               ),
