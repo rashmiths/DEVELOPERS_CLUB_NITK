@@ -232,9 +232,8 @@ class _MyHomePageState extends State<MyHomePage> {
         events.latestevents.isEmpty ? [dummyEvent] : events.latestevents;
     //RANKINGS
     final rankings = Provider.of<Ranks>(context, listen: false);
-    final ranksList =  rankings.ranks;
-    final latestRanks =
-         rankings.latestRanks;
+    final ranksList = rankings.ranks;
+    final latestRanks = rankings.latestRanks;
     //NEWS
     final news = Provider.of<NewsList>(context, listen: false);
     final newsList =
@@ -258,8 +257,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(30.0),
           child: GestureDetector(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => EventDetail())),
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => EventDetail())),
             child: Stack(
               children: [
                 Container(
@@ -275,11 +274,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                            color: Colors.black26
-                          ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                              color: Colors.black26),
                         ),
                         // Align(
                         //   alignment: Alignment.topRight,
@@ -294,7 +292,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   alignment: Alignment.bottomCenter,
                   child: Text(
                     latestEventsList[index].title,
-                    style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 )
               ],
@@ -349,7 +348,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       subHeading(
                           'Trending Events',
                           EventsPage(
-                            
+                            events: eventsList,
                           ),
                           context),
                       eventsCarousel,
@@ -361,12 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      subHeading(
-                          'Latest News',
-                          NewsListings(
-                            
-                          ),
-                          context),
+                      subHeading('Latest News', NewsListings(), context),
                       //LATEST NEWS LIST
                       Container(
                         height: 140,
@@ -375,9 +369,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             return ListTile(
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (_) => NewsDetailPage(
-                                          
-                                          ))),
+                                      builder: (_) => NewsDetailPage())),
                               leading: CircleAvatar(
                                   radius: 30,
                                   backgroundColor: Colors.white,
@@ -399,24 +391,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      subHeading(
-                          'Rankings',
-                          RankingsPage(
-                            
-                          ),
-                          context),
+                      subHeading('Rankings', RankingsPage(), context),
                       SizedBox(
                         height: 20,
                       ),
                       for (int i = 0; i < latestRanks.length; i = i + 2)
                         Column(
                           children: [
-                             Padding(
-                               padding: const EdgeInsets.symmetric(horizontal:8.0),
-                               child: Row(
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Row(
                                 //alignment: WrapAlignment.spaceBetween,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+
                                 children: [
                                   rankingsRow(
                                     latestRanks[i].ranking,
@@ -430,8 +419,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       latestRanks[i + 1].year,
                                     ),
                                 ],
+                              ),
                             ),
-                             ),
                             SizedBox(
                               height: 15,
                             ),
