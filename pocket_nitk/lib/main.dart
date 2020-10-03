@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pocket_nitk/providers/events.dart';
 import 'package:pocket_nitk/providers/home_photos.dart';
 import 'package:pocket_nitk/providers/hostels.dart';
@@ -9,7 +10,13 @@ import 'package:pocket_nitk/screens/bottom_tabs.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
