@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "841392899226",
+    "firebase_url": "https://redmarker-31eb6.firebaseio.com",
+    "project_id": "redmarker-31eb6",
+    "storage_bucket": "redmarker-31eb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841392899226:android:9807d7b34dbdcd70b48b23",
+        "android_client_info": {
+          "package_name": "com.example.red_button"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841392899226-bfafimmgskvie6e4pn75vu07g32ntunf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.red_button",
+            "certificate_hash": "9f122b489d31e9aa5e3fa68f0cbac047c58f24f1"
+          }
+        },
+        {
+          "client_id": "841392899226-dobpmsifcptjp5l1efn6lv2fdos1kvpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRnSgxRwdUKorwUXz90n07JgSuBOfEX0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841392899226-dobpmsifcptjp5l1efn6lv2fdos1kvpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
