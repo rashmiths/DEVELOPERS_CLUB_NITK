@@ -258,23 +258,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          RaisedButton(
-            onPressed: () async {
-              final box = Hive.box('cart');
-              final keyList = box.keys.toList();
-              for (int j = 0; j < keyList.length; j++) {
-                Provider.of<Emergency>(context, listen: false)
-                    .removeEmergencyContact(keyList[j]);
-              }
-
-              context.read<AuthenticationService>().signOut();
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) {
-                return SignInPage();
-              }));
-            },
-            child: Text("Sign out"),
-          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Icon(Icons.phone,size: 30,),
+          )
         ],
       )),
     );

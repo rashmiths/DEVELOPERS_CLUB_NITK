@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:red_button/default_messagePage.dart';
 import 'package:red_button/providers/authorization.dart';
 import 'package:provider/provider.dart';
 import 'package:red_button/providers/emergency_contacts.dart';
@@ -23,7 +24,13 @@ class SettingsPage extends StatelessWidget {
           children: [
             ListTile(
               onTap: (){
-                if(i==1){
+                if(i==0){
+                  Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) {
+                return DefaultMessage();
+              }));
+                }
+               else if(i==1){
                   final box = Hive.box('cart');
               final keyList = box.keys.toList();
               for (int j = 0; j < keyList.length; j++) {
