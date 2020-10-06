@@ -29,7 +29,7 @@ class _BottomTabsState extends State<BottomTabs> {
     List<Widget> _children = [
       HomePage(),
       MapSample(),
-      FirstPage(),
+      SettingsPage(),
     ];
     return SafeArea(
       child: Scaffold(
