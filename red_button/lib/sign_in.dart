@@ -41,6 +41,7 @@
 //}
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:red_button/bottom_tabs.dart';
 import 'package:red_button/homepage.dart';
@@ -206,6 +207,7 @@ class _SignInPageState extends State<SignInPage> {
                         else
                           GestureDetector(
                             onTap: () async {
+                              SystemChannels.textInput.invokeMethod('TextInput.hide');
                               setState(() {
                                 print('TAPPED');
                                 _isLoading = true;
