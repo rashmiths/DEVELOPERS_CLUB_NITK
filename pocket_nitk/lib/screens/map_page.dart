@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pocket_nitk/constants/colors.dart';
 import 'package:pocket_nitk/widgets/info_dialog.dart';
 
@@ -25,6 +26,7 @@ class MapSampleState extends State<MapSample> {
   //MARKING ALL THE IMP LOCATION IN NITK
   @override
   void initState() {
+    Permission.location.request();
     allMarkers.add(Marker(
         markerId: MarkerId('NitkLocation'),
         draggable: true,
