@@ -49,6 +49,7 @@ navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
     <td>Home Page</td>
      <td>Building Page</td>
      <td>MapPage</td>
+    <td>SettingsPage</td>
   </tr>
   <tr>
     <td><img src="https://user-images.githubusercontent.com/54366663/95326469-476cfc80-08c0-11eb-83cc-c774581ffb0f.jpeg" width=250 height=480></td>
