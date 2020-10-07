@@ -51,10 +51,10 @@ navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
      <td>MapPage</td>
   </tr>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/54366663/94993413-7b89aa00-05ae-11eb-8fdb-a12aa1e65885.jpeg" width=250 height=480></td>
-    <td><img src="https://user-images.githubusercontent.com/54366663/94993555-7d07a200-05af-11eb-81fc-9605556f2817.jpeg" width=250 height=480></td>
-    <td><img src="https://user-images.githubusercontent.com/54366663/94994638-85afa680-05b6-11eb-829d-196aaa61f0b3.jpeg" width=250 height=480></td>
-    <td><img src="https://user-images.githubusercontent.com/54366663/94994638-85afa680-05b6-11eb-829d-196aaa61f0b3.jpeg" width=250 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/54366663/95326469-476cfc80-08c0-11eb-83cc-c774581ffb0f.jpeg" width=250 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/54366663/95326482-4c31b080-08c0-11eb-8ff4-133e365e52f7.jpeg" width=250 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/54366663/95326491-505dce00-08c0-11eb-9b15-353c92c88e55.jpeg" width=250 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/54366663/95326499-5489eb80-08c0-11eb-95e6-655cc94b5bd4.jpeg" width=250 height=480></td>
   </tr>
  </table>
  
