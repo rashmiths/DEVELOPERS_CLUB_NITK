@@ -42,6 +42,9 @@ Run the Project
 navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
 
 ```
+
+**Grant Location and Contacts Permission when asked**
+
 ## Screenshot
 
 <table>
