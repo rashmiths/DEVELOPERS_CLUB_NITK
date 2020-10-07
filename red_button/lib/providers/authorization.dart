@@ -1,8 +1,5 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -22,7 +19,6 @@ class AuthenticationService {
   }
 
   Future<void> signOut() async {
-   
     await _firebaseAuth.signOut();
   }
 
@@ -59,8 +55,7 @@ class AuthenticationService {
     try {
       final result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      print('###############3');
-      print(result.user.email);
+      
       //String idToken = await result.user.getIdToken();
       // Hive.box('cart').put('currentuser',result.user.email);
       boxName = result.user.email;
@@ -72,6 +67,7 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     } on SocketException catch (e) {
+      print(e);
       return 'No INTERNET';
     } catch (e) {
       print(e);
@@ -86,6 +82,7 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     } on SocketException catch (e) {
+      print(e);
       return 'No INTERNET';
     }
   }

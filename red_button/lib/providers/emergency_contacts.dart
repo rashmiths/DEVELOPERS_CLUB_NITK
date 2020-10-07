@@ -27,8 +27,7 @@ class Emergency with ChangeNotifier {
   final Map<String, EmergencyContact> emcontacts =
       Hive.box('cart').toMap().cast<String, EmergencyContact>();
   Map<String, EmergencyContact> get emergencyContacts {
-    print('****************');
-    print(emcontacts);
+    
     return emcontacts;
   }
 
@@ -55,8 +54,7 @@ class Emergency with ChangeNotifier {
   }
 
   void removeEmergencyContact(String id) {
-    // print('############################################');
-    // print(Hive.box('cart').get('$id $i'));
+   
     Hive.box('cart').delete(id);
     emcontacts.removeWhere((key, value) => value.value == id);
 

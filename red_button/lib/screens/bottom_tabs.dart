@@ -1,10 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:red_button/first_page.dart';
-import 'package:red_button/homepage.dart';
-import 'package:red_button/map_page.dart';
-import 'package:red_button/settings.dart';
+import 'package:red_button/screens/homepage.dart';
+import 'package:red_button/screens/map_page.dart';
+import 'package:red_button/screens/settings.dart';
 
 class BottomTabs extends StatefulWidget {
   BottomTabs({Key key}) : super(key: key);

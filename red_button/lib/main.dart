@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:red_button/bottom_tabs.dart';
+import 'package:red_button/screens/bottom_tabs.dart';
 import 'package:red_button/providers/authorization.dart';
 import 'package:red_button/providers/emergency_contacts.dart';
-import 'package:red_button/sign_in.dart';
+import 'package:red_button/screens/sign_in.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,11 @@ Future<void> main() async {
   Hive.init(appDocumentDir.path);
   Hive.registerAdapter(EmergencyContactAdapter());
   await Hive.openBox('cart');
- 
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(MyApp());
 }
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'REDBUTTON',
         theme: ThemeData(
           primarySwatch: Colors.red,
           visualDensity: VisualDensity.adaptivePlatformDensity,
