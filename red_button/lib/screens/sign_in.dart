@@ -1,52 +1,10 @@
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:firebase_core/firebase_core.dart';
-//import 'package:google_sign_in/google_sign_in.dart';
-//
-//final FirebaseAuth _auth = FirebaseAuth.instance;
-//final GoogleSignIn googleSignIn = GoogleSignIn();
-//
-//Future<String> signInWithGoogle() async {
-//  await Firebase.initializeApp();
-//
-//  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-//  final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
-//
-//  final AuthCredential credential = GoogleAuthProvider.credential(
-//    accessToken: googleSignInAuthentication.accessToken,
-//    idToken: googleSignInAuthentication.idToken,
-//  );
-//
-//  final UserCredential authResult = await _auth.signInWithCredential(credential);
-//  final User user = authResult.user;
-//
-//  if (user != null) {
-//    assert(!user.isAnonymous);
-//    assert(await user.getIdToken() != null);
-//
-//    final User currentUser = _auth.currentUser;
-//    assert(user.uid == currentUser.uid);
-//
-//    print('signInWithGoogle succeeded: $user');
-//
-//    return '$user';
-//  }
-//
-//  return null;
-//}
-//
-//Future<void> signOutGoogle() async {
-//  await googleSignIn.signOut();
-//
-//  print("User Signed Out");
-//}
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:red_button/bottom_tabs.dart';
-import 'package:red_button/homepage.dart';
+import 'package:red_button/screens/bottom_tabs.dart';
 import 'package:red_button/providers/authorization.dart';
-import 'package:red_button/fade_animation.dart';
+import 'package:red_button/widgets/fade_animation.dart';
 
 enum LoginMode { Email, Phone }
 
@@ -65,11 +23,12 @@ class _SignInPageState extends State<SignInPage> {
   AuthMode _authMode = AuthMode.Login;
   bool _isLoading = false;
 
-  void _switchLoginMode(LoginMode mode) {
-    setState(() {
-      _loginMode = mode;
-    });
-  }
+//logging in with phone which is UpCOMING
+  // void _switchLoginMode(LoginMode mode) {
+  //   setState(() {
+  //     _loginMode = mode;
+  //   });
+  // }
 
   void _switchAuthMode() {
     if (_authMode == AuthMode.Login) {
@@ -105,6 +64,7 @@ class _SignInPageState extends State<SignInPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  //HEADING
                   FadeAnimation(
                       1,
                       Text(
@@ -114,6 +74,7 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 10,
                   ),
+                  //SUBHEADING
                   FadeAnimation(
                       1.3,
                       Text(
@@ -205,6 +166,7 @@ class _SignInPageState extends State<SignInPage> {
                             child: CircularProgressIndicator(),
                           )
                         else
+                        //LOGIN METHOD
                           GestureDetector(
                             onTap: () async {
                               SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -242,6 +204,7 @@ class _SignInPageState extends State<SignInPage> {
                               //   _isLoading = false;
                               // });
                             },
+                            //LOGIN OR SIGNUP BUTTON
                             child: FadeAnimation(
                                 1.6,
                                 Container(
@@ -270,86 +233,87 @@ class _SignInPageState extends State<SignInPage> {
                             FlatButton(
                               onPressed: () {
                                 print(_loginMode);
-                                _switchLoginMode(_loginMode == LoginMode.Email
-                                    ? LoginMode.Phone
-                                    : LoginMode.Email);
+                                _switchAuthMode();
                               },
                               child: Text(
-                                "${_loginMode == LoginMode.Email ? 'WITH PHONE' : 'WITH EMAIL'} INSTEAD",
+                                "${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD",
                                 style: TextStyle(color: Colors.grey),
                               ),
                             )),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        FadeAnimation(
-                            1.7,
-                            Text(
-                              _authMode == AuthMode.Login
-                                  ? 'Sign Up WIth'
-                                  : 'Login With',
-                              style: TextStyle(color: Colors.grey),
-                            )),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: FadeAnimation(
-                                  1.8,
-                                  GestureDetector(
-                                    onTap: () {
-                                      _switchAuthMode();
-                                      _switchLoginMode(LoginMode.Email);
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          color: Colors.redAccent[700]),
-                                      child: Center(
-                                        child: Text(
-                                          "EMAIL",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ),
-                                  )),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Expanded(
-                              child: FadeAnimation(
-                                  1.9,
-                                  GestureDetector(
-                                    onTap: () {
-                                      _switchAuthMode();
-                                      _switchLoginMode(LoginMode.Phone);
-                                    },
-                                    child: Container(
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          color: Colors.black),
-                                      child: Center(
-                                        child: Text(
-                                          "PHONE",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ),
-                                  )),
-                            )
-                          ],
-                        )
+                        ///Upcoming feature of ligging in with phone and google
+                        
+                        
+                         // SizedBox(
+                        //   height: 40,
+                        // ),
+                        // FadeAnimation(
+                        //     1.7,
+                        //     Text(
+                        //       _authMode == AuthMode.Login
+                        //           ? 'Sign Up WIth'
+                        //           : 'Login With',
+                        //       style: TextStyle(color: Colors.grey),
+                        //     )),
+                        // SizedBox(
+                        //   height: 30,
+                        // ),
+                        // Row(
+                        //   children: <Widget>[
+                        //     Expanded(
+                        //       child: FadeAnimation(
+                        //           1.8,_loginMode == LoginMode.Emaio
+                        //           GestureDetector(
+                        //             onTap: () {
+                        //               _switchAuthMode();
+                        //               _switchLoginMode(LoginMode.Email);
+                        //             },
+                        //             child: Container(
+                        //               height: 50,
+                        //               decoration: BoxDecoration(
+                        //                   borderRadius:
+                        //                       BorderRadius.circular(50),
+                        //                   color: Colors.redAccent[700]),
+                        //               child: Center(
+                        //                 child: Text(
+                        //                   "EMAIL",
+                        //                   style: TextStyle(
+                        //                       color: Colors.white,
+                        //                       fontWeight: FontWeight.bold),
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           )),
+                        //     ),
+                        //     SizedBox(
+                        //       width: 30,
+                        //     ),
+                        //     Expanded(
+                        //       child: FadeAnimation(
+                        //           1.9,
+                        //           GestureDetector(
+                        //             onTap: () {
+                        //               _switchAuthMode();
+                        //               _switchLoginMode(LoginMode.Phone);
+                        //             },
+                        //             child: Container(
+                        //               height: 50,
+                        //               decoration: BoxDecoration(
+                        //                   borderRadius:
+                        //                       BorderRadius.circular(50),
+                        //                   color: Colors.black),
+                        //               child: Center(
+                        //                 child: Text(
+                        //                   "PHONE",
+                        //                   style: TextStyle(
+                        //                       color: Colors.white,
+                        //                       fontWeight: FontWeight.bold),
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           )),
+                        //     )
+                        //   ],
+                        // )
                       ],
                     ),
                   ),
@@ -361,32 +325,5 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
 
-//      Scaffold(
-//      body: Column(
-//        children: [
-//          TextField(
-//            controller: emailController,
-//            decoration: InputDecoration(
-//              labelText: "Email",
-//            ),
-//          ),
-//          TextField(
-//            controller: passwordController,
-//            decoration: InputDecoration(
-//              labelText: "Password",
-//            ),
-//          ),
-//          RaisedButton(
-//            onPressed: () {
-//              context.read<AuthenticationService>().signIn(
-//                email: emailController.text.trim(),
-//                password: passwordController.text.trim(),
-//              );
-//            },
-//            child: Text("Sign in"),
-//          )
-//        ],
-//      ),
-//    );
   }
 }

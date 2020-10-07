@@ -1,8 +1,5 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:hive/hive.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -22,7 +19,6 @@ class AuthenticationService {
   }
 
   Future<void> signOut() async {
-   
     await _firebaseAuth.signOut();
   }
 
@@ -72,6 +68,7 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     } on SocketException catch (e) {
+      print(e);
       return 'No INTERNET';
     } catch (e) {
       print(e);
@@ -86,6 +83,7 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     } on SocketException catch (e) {
+      print(e);
       return 'No INTERNET';
     }
   }

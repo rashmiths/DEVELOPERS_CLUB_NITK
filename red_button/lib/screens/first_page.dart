@@ -2,9 +2,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:red_button/bottom_tabs.dart';
-import 'package:red_button/homepage.dart';
-import 'package:red_button/providers/authorization.dart';
+import 'package:red_button/screens/bottom_tabs.dart';
 import 'package:red_button/providers/emergency_contacts.dart';
 
 class FirstPage extends StatefulWidget {
@@ -211,6 +209,7 @@ class _FirstPageState extends State<FirstPage> {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 }
 

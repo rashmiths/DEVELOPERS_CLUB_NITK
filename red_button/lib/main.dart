@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:red_button/bottom_tabs.dart';
+import 'package:red_button/screens/bottom_tabs.dart';
 import 'package:red_button/providers/authorization.dart';
 import 'package:red_button/providers/emergency_contacts.dart';
-import 'package:red_button/sign_in.dart';
+import 'package:red_button/screens/sign_in.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

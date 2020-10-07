@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:geocoder/geocoder.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class MapSample extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
   bool normalMap = true;
 
-  CameraPosition _kGooglePlex;
+  //CameraPosition _kGooglePlex;
   var currentLocation;
   var first;
   bool error = false;
@@ -77,21 +76,21 @@ class MapSampleState extends State<MapSample> {
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
-          actions: [
-            IconButton(
-                icon: Icon(
-                  Icons.info,
-                  color: Colors.black,
-                  size: 30,
-                ),
-                onPressed: () {
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (context) {
-                  //       return InfoDialog();
-                  //     });
-                })
-          ],
+          // actions: [
+          //   IconButton(
+          //       icon: Icon(
+          //         Icons.info,
+          //         color: Colors.black,
+          //         size: 30,
+          //       ),
+          //       onPressed: () {
+          //         showDialog(
+          //             context: context,
+          //             builder: (context) {
+          //               return InfoDialog();
+          //             });
+          //       })
+          // ],
         ),
         body: currentLocation == null && first == null
             ? Container(
@@ -133,6 +132,7 @@ class MapSampleState extends State<MapSample> {
                 },
                 myLocationEnabled: true,
               ),
+        //for hybrid map
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: Container(
           width: 80,

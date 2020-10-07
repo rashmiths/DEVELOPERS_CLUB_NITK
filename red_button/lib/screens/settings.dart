@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:red_button/default_messagePage.dart';
+import 'package:red_button/screens/default_messagePage.dart';
 import 'package:red_button/providers/authorization.dart';
 import 'package:provider/provider.dart';
 import 'package:red_button/providers/emergency_contacts.dart';
-import 'package:red_button/sign_in.dart';
+import 'package:red_button/screens/sign_in.dart';
 
 
 List<Icon> iconList=[Icon(Icons.message),Icon(Icons.exit_to_app)];
@@ -31,6 +31,7 @@ class SettingsPage extends StatelessWidget {
               }));
                 }
                else if(i==1){
+                 //LOGOUT METHOD
                   final box = Hive.box('cart');
               final keyList = box.keys.toList();
               for (int j = 0; j < keyList.length; j++) {

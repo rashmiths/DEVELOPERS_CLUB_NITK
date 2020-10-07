@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
-import 'package:red_button/fade_animation.dart';
-import 'package:red_button/first_page.dart';
-import 'package:red_button/providers/authorization.dart';
+import 'package:red_button/widgets/fade_animation.dart';
+import 'package:red_button/screens/first_page.dart';
 import 'package:red_button/providers/emergency_contacts.dart';
-import 'package:red_button/sign_in.dart';
 
 import 'package:flutter_sms/flutter_sms.dart';
 
@@ -24,6 +21,87 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final contacts = Provider.of<Emergency>(context);
+
+    ///trusted contacts list
+    final trustedContacts = Padding(
+      padding: const EdgeInsets.only(top: 400.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 8.0, bottom: 10.0, left: 10),
+                child: Text(
+                  'TRUSTED CONTACTS',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+              ),
+              contacts.emergencyContacts.isEmpty
+                  ? Expanded(
+                      child: Center(
+                        child: Text(' Emergency contacts list is empty'),
+                      ),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (ctx, i) {
+                          return Column(
+                            children: [
+                              ListTile(
+                                leading: CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: Colors.red[800],
+                                  child: Text(
+                                      (contacts.emergencyContacts.values
+                                              .toList()[i]
+                                              .displayName[0] +
+                                          contacts.emergencyContacts.values
+                                              .toList()[i]
+                                              .displayName[1]
+                                              .toUpperCase()),
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                                title: Center(
+                                    child: Text(contacts
+                                            .emergencyContacts.values
+                                            .toList()[i]
+                                            .displayName ??
+                                        "")),
+                                subtitle: Center(
+                                  child: Text(contacts.emergencyContacts.values
+                                      .toList()[i]
+                                      .value),
+                                ),
+                                trailing: IconButton(
+                                    icon: Icon(Icons.delete),
+                                    onPressed: () {
+                                      contacts.removeEmergencyContact(contacts
+                                          .emergencyContacts.values
+                                          .toList()[i]
+                                          .value);
+                                    }),
+                              ),
+                              Divider()
+                            ],
+                          );
+                        },
+                        itemCount: contacts.emergencyContacts.length,
+                      ),
+                    ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    ///the body
     return Scaffold(
       body: SafeArea(
           child: Stack(
@@ -64,7 +142,8 @@ class _HomePageState extends State<HomePage> {
                     print(tem2.toString());
 
                     _sendSMS(
-                        'Contact me immedietly any my coordinates is (${value.latitude},${value.longitude}) or click the link https://www.google.com/maps/search/${value.latitude},+${value.longitude}/@{$value.latitude},${value.longitude},17z',
+                        'Contact me immedietly any my coordinates is (${value.latitude},${value.longitude})' +
+                            'click the link https://www.google.com/maps/search/${value.latitude},+${value.longitude}/@{$value.latitude},${value.longitude},17z',
                         tem2);
                   });
                 },
@@ -84,6 +163,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
+                    //circular animation
                     Positioned(
                       left: 25,
                       top: 25,
@@ -113,9 +193,6 @@ class _HomePageState extends State<HomePage> {
                           decoration: BoxDecoration(
                             color: Colors.red[400],
                             shape: BoxShape.circle,
-                            // border: Border.all(
-                            //     //color: Colors.grey,
-                            //     )
                           ),
                         ),
                       ),
@@ -161,12 +238,6 @@ class _HomePageState extends State<HomePage> {
                             )
                           ],
                         ),
-                        // child: Container(
-                        //   decoration: BoxDecoration(
-                        //     sha
-                        //   ),
-                        //   child: Image.asset('assets/em.png'),
-                        // ),
                       ),
                     ),
                   ],
@@ -174,93 +245,13 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 400.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50)),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 8.0, bottom: 10.0, left: 10),
-                      child: Text(
-                        'TRUSTED CONTACTS',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ),
-                    contacts.emergencyContacts.isEmpty
-                        ? Expanded(
-                          child: Center(
-                              child:
-                                  Text(' Emergency contacts list is empty'),
-                            ),
-                        )
-                        : Expanded(
-                            child: ListView.builder(
-                              itemBuilder: (ctx, i) {
-                                return Column(
-                                  children: [
-                                    ListTile(
-                                      leading: CircleAvatar(
-                                        radius: 30,
-                                        backgroundColor: Colors.red[800],
-                                        child: Text(
-                                            (contacts.emergencyContacts.values
-                                                    .toList()[i]
-                                                    .displayName[0] +
-                                                contacts
-                                                    .emergencyContacts.values
-                                                    .toList()[i]
-                                                    .displayName[1]
-                                                    .toUpperCase()),
-                                            style:
-                                                TextStyle(color: Colors.white)),
-                                      ),
-                                      title: Center(
-                                          child: Text(contacts
-                                                  .emergencyContacts.values
-                                                  .toList()[i]
-                                                  .displayName ??
-                                              "")),
-                                      subtitle: Center(
-                                        child: Text(contacts
-                                            .emergencyContacts.values
-                                            .toList()[i]
-                                            .value),
-                                      ),
-                                      trailing: IconButton(
-                                          icon: Icon(Icons.delete),
-                                          onPressed: () {
-                                            contacts.removeEmergencyContact(
-                                                contacts
-                                                    .emergencyContacts.values
-                                                    .toList()[i]
-                                                    .value);
-                                          }),
-                                    ),
-                                    Divider()
-                                  ],
-                                );
-                              },
-                              itemCount: contacts.emergencyContacts.length,
-                            ),
-                          ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          trustedContacts,
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Icon(Icons.phone,size: 30,),
+            child: Icon(
+              Icons.phone,
+              size: 30,
+            ),
           )
         ],
       )),
@@ -269,7 +260,6 @@ class _HomePageState extends State<HomePage> {
 }
 
 void _sendSMS(String message, List<String> recipents) async {
-  String _result =
-      await FlutterSms.sendSMS(message: message, recipients: recipents);
+  await FlutterSms.sendSMS(message: message, recipients: recipents);
 //setState(() => _message = _result);
 }
