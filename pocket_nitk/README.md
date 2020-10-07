@@ -43,7 +43,9 @@ navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
 
 ```
 
-**Provide Location Permission when asked in the app**
+**Permission Required**
+
+  LOCATION ACCESS
 
 
 
