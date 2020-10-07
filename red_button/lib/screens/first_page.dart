@@ -79,11 +79,11 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red[800],
         centerTitle: true,
         title: new Text(
           'Select Contacts',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: !_isLoading
