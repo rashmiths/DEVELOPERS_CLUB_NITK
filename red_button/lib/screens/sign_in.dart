@@ -21,6 +21,7 @@ class _SignInPageState extends State<SignInPage> {
   LoginMode _loginMode = LoginMode.Email;
   AuthMode _authMode = AuthMode.Login;
   bool _isLoading = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 //logging in with phone which is UpCOMING
   // void _switchLoginMode(LoginMode mode) {
@@ -43,7 +44,9 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      key: _scaffoldKey,
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -101,53 +104,71 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         FadeAnimation(
                             1.4,
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Color.fromRGBO(225, 95, 27, .3),
-                                        blurRadius: 20,
-                                        offset: Offset(0, 10))
-                                  ]),
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        border: Border(
-                                            bottom: BorderSide(
-                                                color: Colors.grey[200]))),
-                                    child: TextField(
-                                      controller: emailController,
-                                      decoration: InputDecoration(
-                                          hintText: "Email",
-                                          hintStyle:
-                                              TextStyle(color: Colors.grey),
-                                          border: InputBorder.none),
-                                    ),
-                                  ),
-                                  if (_loginMode == LoginMode.Email)
+                            Form(
+                              key: _formKey,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                              Color.fromRGBO(225, 95, 27, .3),
+                                          blurRadius: 20,
+                                          offset: Offset(0, 10))
+                                    ]),
+                                child: Column(
+                                  children: <Widget>[
                                     Container(
                                       padding: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           border: Border(
                                               bottom: BorderSide(
                                                   color: Colors.grey[200]))),
-                                      child: TextField(
-                                        controller: passwordController,
-                                        keyboardType:
-                                            TextInputType.visiblePassword,
-                                        obscureText: true,
+                                      child: TextFormField(
+                                        validator: (val) {
+                                          if (val.isEmpty)
+                                            return 'EMAIL CANNOT BE EMPTY';
+                                          else if (!(val.contains('@'))) {
+                                            return 'ENTER A VALID EMAIL ADRESS';
+                                          }
+                                          return null;
+                                        },
+                                        controller: emailController,
                                         decoration: InputDecoration(
-                                            hintText: "Password",
+                                            hintText: "Email",
                                             hintStyle:
                                                 TextStyle(color: Colors.grey),
                                             border: InputBorder.none),
                                       ),
                                     ),
-                                ],
+                                    if (_loginMode == LoginMode.Email)
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Colors.grey[200]))),
+                                        child: TextFormField(
+                                          controller: passwordController,
+                                          validator: (val) {
+                                            if (val.isEmpty) {
+                                              return 'PASSWORD CANNOT BE EMPTY';
+                                            }
+                                            return null;
+                                          },
+                                          keyboardType:
+                                              TextInputType.visiblePassword,
+                                          obscureText: true,
+                                          decoration: InputDecoration(
+                                              hintText: "Password",
+                                              hintStyle:
+                                                  TextStyle(color: Colors.grey),
+                                              border: InputBorder.none),
+                                        ),
+                                      ),
+                                  ],
+                                ),
                               ),
                             )),
                         SizedBox(
@@ -166,37 +187,62 @@ class _SignInPageState extends State<SignInPage> {
                           //LOGIN METHOD
                           GestureDetector(
                             onTap: () async {
-                              SystemChannels.textInput
-                                  .invokeMethod('TextInput.hide');
-                              setState(() {
-                                print('TAPPED');
-                                _isLoading = true;
-                              });
-                              if (_authMode == AuthMode.Login) {
-                                final result = await context
-                                    .read<AuthenticationService>()
-                                    .signIn(
-                                        email: emailController.text.trim(),
-                                        password:
-                                            passwordController.text.trim());
-                                if (result == 'Signed in')
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(builder: (_) {
-                                    return BottomTabs();
-                                  }));
-                              } else {
-                                final result = await context
-                                    .read<AuthenticationService>()
-                                    .signUp(
-                                        email: emailController.text.trim(),
-                                        password:
-                                            passwordController.text.trim());
-                                if (result == 'Signed in')
-                                  Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(builder: (_) {
-                                    return BottomTabs();
-                                  }));
+                              final form = _formKey.currentState;
+
+                              if (form.validate()) {
+                                SystemChannels.textInput
+                                    .invokeMethod('TextInput.hide');
+                                setState(() {
+                                  print('TAPPED');
+                                  _isLoading = true;
+                                });
+                                if (_authMode == AuthMode.Login) {
+                                  final result = await context
+                                      .read<AuthenticationService>()
+                                      .signIn(
+                                          email: emailController.text.trim(),
+                                          password:
+                                              passwordController.text.trim());
+                                  if (result == 'Signed in')
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(builder: (_) {
+                                      return BottomTabs();
+                                    }));
+                                  else {
+                                    setState(() {
+                                      _isLoading = false;
+                                    });
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                        title: const Text('Oops!'),
+                                        content: Text(result),
+                                        actions: <Widget>[
+                                          FlatButton(
+                                            child: const Text('TRY AGAIN'),
+                                            onPressed: () async {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  final result = await context
+                                      .read<AuthenticationService>()
+                                      .signUp(
+                                          email: emailController.text.trim(),
+                                          password:
+                                              passwordController.text.trim());
+                                  if (result == 'Signed in')
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(builder: (_) {
+                                      return BottomTabs();
+                                    }));
+                                }
                               }
+
                               // setState(() {
                               //   print('unTapped');
                               //   _isLoading = false;
@@ -210,7 +256,7 @@ class _SignInPageState extends State<SignInPage> {
                                   margin: EdgeInsets.symmetric(horizontal: 50),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
-                                      color: Colors.orange[900]),
+                                      color: Colors.red[900]),
                                   child: Center(
                                     child: Text(
                                       _authMode == AuthMode.Login
