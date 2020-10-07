@@ -45,8 +45,8 @@ class Emergency with ChangeNotifier {
 
       await Hive.openBox('cart');
 
-      Hive.box('cart').put(hiveItem.displayName, hiveItem);
-      emcontacts.putIfAbsent(hiveItem.displayName, () => hiveItem);
+      Hive.box('cart').put(hiveItem.value, hiveItem);
+      emcontacts.putIfAbsent(hiveItem.value, () => hiveItem);
 
       notifyListeners();
     }
@@ -58,7 +58,7 @@ class Emergency with ChangeNotifier {
     // print('############################################');
     // print(Hive.box('cart').get('$id $i'));
     Hive.box('cart').delete(id);
-    emcontacts.removeWhere((key, value) => value.displayName == id);
+    emcontacts.removeWhere((key, value) => value.value == id);
 
     notifyListeners();
   }

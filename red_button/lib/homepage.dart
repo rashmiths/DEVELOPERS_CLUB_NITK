@@ -53,18 +53,18 @@ class _HomePageState extends State<HomePage> {
                   Location location = Location();
 
                   location.getLocation().then((value) {
-                    List<String> tem2=[];
+                    List<String> tem2 = [];
                     int j;
-                    for ( j= 0;
+                    for (j = 0;
                         j < contacts.emergencyContacts.values.toList().length;
                         j++) {
-                      tem2.add(contacts.emergencyContacts.values.toList()[j].value);
-                          
+                      tem2.add(
+                          contacts.emergencyContacts.values.toList()[j].value);
                     }
                     print(tem2.toString());
 
                     _sendSMS(
-                        'Contact me immedietly any my coordinates is (${value.latitude},${value.longitude})',
+                        'Contact me immedietly any my coordinates is (${value.latitude},${value.longitude}) or click the link https://www.google.com/maps/search/${value.latitude},+${value.longitude}/@{$value.latitude},${value.longitude},17z',
                         tem2);
                   });
                 },
@@ -126,7 +126,41 @@ class _HomePageState extends State<HomePage> {
                       child: CircleAvatar(
                         radius: 80,
                         backgroundColor: Colors.red[100],
-                        backgroundImage: AssetImage('assets/emergency.jpg'),
+                        backgroundImage: AssetImage(
+                          'assets/emergency2.png',
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'TAP',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text(
+                                'ON',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text(
+                                'EMERGENCY',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
+                        ),
                         // child: Container(
                         //   decoration: BoxDecoration(
                         //     sha
@@ -162,75 +196,72 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (ctx, i) {
-                          return Column(
-                            children: [
-                              ListTile(
-                                leading: CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: Colors.red[800],
-                                  child: Text(
-                                      (contacts.emergencyContacts.values
-                                              .toList()[i]
-                                              .displayName[0] +
-                                          contacts.emergencyContacts.values
-                                              .toList()[i]
-                                              .displayName[1]
-                                              .toUpperCase()),
-                                      style: TextStyle(color: Colors.white)),
-                                ),
-                                title: Center(
-                                    child: Text(contacts
+                    contacts.emergencyContacts.isEmpty
+                        ? Expanded(
+                          child: Center(
+                              child:
+                                  Text(' Emergency contacts list is empty'),
+                            ),
+                        )
+                        : Expanded(
+                            child: ListView.builder(
+                              itemBuilder: (ctx, i) {
+                                return Column(
+                                  children: [
+                                    ListTile(
+                                      leading: CircleAvatar(
+                                        radius: 30,
+                                        backgroundColor: Colors.red[800],
+                                        child: Text(
+                                            (contacts.emergencyContacts.values
+                                                    .toList()[i]
+                                                    .displayName[0] +
+                                                contacts
+                                                    .emergencyContacts.values
+                                                    .toList()[i]
+                                                    .displayName[1]
+                                                    .toUpperCase()),
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                      ),
+                                      title: Center(
+                                          child: Text(contacts
+                                                  .emergencyContacts.values
+                                                  .toList()[i]
+                                                  .displayName ??
+                                              "")),
+                                      subtitle: Center(
+                                        child: Text(contacts
                                             .emergencyContacts.values
                                             .toList()[i]
-                                            .displayName ??
-                                        "")),
-                                subtitle: Center(
-                                  child: Text(contacts.emergencyContacts.values
-                                      .toList()[i]
-                                      .value),
-                                ),
-                                trailing: IconButton(
-                                    icon: Icon(Icons.delete),
-                                    onPressed: () {
-                                      contacts.removeEmergencyContact(
-                                        contacts.emergencyContacts.values
-                                            .toList()[i]
-                                            .displayName,
-                                      );
-                                    }),
-                              ),
-                              Divider()
-                            ],
-                          );
-                        },
-                        itemCount: contacts.emergencyContacts.length,
-                      ),
-                    ),
+                                            .value),
+                                      ),
+                                      trailing: IconButton(
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {
+                                            contacts.removeEmergencyContact(
+                                                contacts
+                                                    .emergencyContacts.values
+                                                    .toList()[i]
+                                                    .value);
+                                          }),
+                                    ),
+                                    Divider()
+                                  ],
+                                );
+                              },
+                              itemCount: contacts.emergencyContacts.length,
+                            ),
+                          ),
                   ],
                 ),
               ),
             ),
           ),
-          RaisedButton(
-            onPressed: () async {
-              final box = Hive.box('cart');
-              final keyList = box.keys.toList();
-              for (int j = 0; j < keyList.length; j++) {
-                Provider.of<Emergency>(context, listen: false)
-                    .removeEmergencyContact(keyList[j]);
-              }
-
-              context.read<AuthenticationService>().signOut();
-              Navigator.of(context)
-                  .pushReplacement(MaterialPageRoute(builder: (_) {
-                return SignInPage();
-              }));
-            },
-            child: Text("Sign out"),
-          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Icon(Icons.phone,size: 30,),
+          )
         ],
       )),
     );
