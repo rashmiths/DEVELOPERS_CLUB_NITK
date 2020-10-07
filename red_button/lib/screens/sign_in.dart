@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -48,11 +47,9 @@ class _SignInPageState extends State<SignInPage> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Colors.red[900],
-          Colors.red[800],
-          Colors.red[400]
-        ])),
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [Colors.red[900], Colors.red[800], Colors.red[400]])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -166,10 +163,11 @@ class _SignInPageState extends State<SignInPage> {
                             child: CircularProgressIndicator(),
                           )
                         else
-                        //LOGIN METHOD
+                          //LOGIN METHOD
                           GestureDetector(
                             onTap: () async {
-                              SystemChannels.textInput.invokeMethod('TextInput.hide');
+                              SystemChannels.textInput
+                                  .invokeMethod('TextInput.hide');
                               setState(() {
                                 print('TAPPED');
                                 _isLoading = true;
@@ -232,7 +230,6 @@ class _SignInPageState extends State<SignInPage> {
                             1.5,
                             FlatButton(
                               onPressed: () {
-                                print(_loginMode);
                                 _switchAuthMode();
                               },
                               child: Text(
@@ -240,10 +237,10 @@ class _SignInPageState extends State<SignInPage> {
                                 style: TextStyle(color: Colors.grey),
                               ),
                             )),
+
                         ///Upcoming feature of ligging in with phone and google
-                        
-                        
-                         // SizedBox(
+
+                        // SizedBox(
                         //   height: 40,
                         // ),
                         // FadeAnimation(
@@ -324,6 +321,5 @@ class _SignInPageState extends State<SignInPage> {
         ),
       ),
     );
-
   }
 }

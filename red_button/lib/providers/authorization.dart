@@ -55,8 +55,7 @@ class AuthenticationService {
     try {
       final result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      print('###############3');
-      print(result.user.email);
+      
       //String idToken = await result.user.getIdToken();
       // Hive.box('cart').put('currentuser',result.user.email);
       boxName = result.user.email;
