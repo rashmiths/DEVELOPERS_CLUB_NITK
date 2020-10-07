@@ -46,7 +46,10 @@ navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
 **Permissions Required**
 
    ACCESS CONTACTS
+   
    ACCESS LOCATION
+   
+   
    
 
 ## Screenshot
