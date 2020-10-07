@@ -54,7 +54,7 @@ navigate to `Run` -> `Run Without Debugging` or CTRL+F5 in VsCode
   <tr>
     <td><img src="https://user-images.githubusercontent.com/54366663/95326469-476cfc80-08c0-11eb-83cc-c774581ffb0f.jpeg" width=250 height=480></td>
     <td><img src="https://user-images.githubusercontent.com/54366663/95326482-4c31b080-08c0-11eb-8ff4-133e365e52f7.jpeg" width=250 height=480></td>
-    <td><img src="https://user-images.githubusercontent.com/54366663/95326491-505dce00-08c0-11eb-9b15-353c92c88e55.jpeg" width=250 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/54366663/95327470-b72fb700-08c1-11eb-8ea8-df9ff6b7e6d5.jpeg" width=250 height=480></td>
     <td><img src="https://user-images.githubusercontent.com/54366663/95326499-5489eb80-08c0-11eb-95e6-655cc94b5bd4.jpeg" width=250 height=480></td>
   </tr>
  </table>
