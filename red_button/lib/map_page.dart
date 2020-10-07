@@ -18,9 +18,10 @@ class MapSampleState extends State<MapSample> {
   CameraPosition _kGooglePlex;
   var currentLocation;
   var first;
+  bool error = false;
   @override
   void initState() {
-    Permission.location.request();
+    // Permission.location.request();
     Location location = Location();
 
     location.getLocation().then((value) {
@@ -51,6 +52,11 @@ class MapSampleState extends State<MapSample> {
                   title: first.locality, snippet: first.addressLine)));
         });
       }
+    }).catchError((err) {
+      print('please enable location permission');
+      setState(() {
+        error = true;
+      });
     });
 
     super.initState();
@@ -90,8 +96,9 @@ class MapSampleState extends State<MapSample> {
         body: currentLocation == null && first == null
             ? Container(
                 child: Center(
-                  child: Text('LOADING...'),
-                ),
+                    child: error == false
+                        ? Text('LOADING.')
+                        : Text('PLEASE ENABLE LOCATION PERMISSION')),
               )
             : GoogleMap(
                 myLocationButtonEnabled: true,
